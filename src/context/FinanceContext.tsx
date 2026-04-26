@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 import { transactions as initialTransactions, Transaction, TransactionType, Category } from "@/data/mockData";
+import { set } from "date-fns";
 
 export type Role = "admin" | "viewer";
 
@@ -34,7 +35,8 @@ export const useFinance = () => {
 };
 
 export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+  const data: Transaction[] = localStorage.getItem("transactions_data") ? JSON.parse(localStorage.getItem("transactions_data")!):[];
+  const [transactions, setTransactions] = useState<Transaction[]>(data);
   const [role, setRole] = useState<Role>("admin");
   const [filters, setFilters] = useState<Filters>({
     search: "",
@@ -70,11 +72,20 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   }, [transactions, filters]);
 
   const addTransaction = useCallback((t: Omit<Transaction, "id">) => {
-    setTransactions((prev) => [{ ...t, id: crypto.randomUUID() }, ...prev]);
+    setTransactions((prev) => {
+      const newTrans = { id: (prev.length + 1).toString(), ...t };
+      const updated = [newTrans, ...prev];
+      localStorage.setItem("transactions_data", JSON.stringify(updated));
+      return updated;
+    });
   }, []);
 
   const deleteTransaction = useCallback((id: string) => {
-    setTransactions((prev) => prev.filter((t) => t.id !== id));
+    setTransactions((prev) => {
+      const updated = prev.filter((t) => t.id !== id);
+      localStorage.setItem("transactions_data", JSON.stringify(updated));
+      return updated;
+    });
   }, []);
 
   const totalIncome = useMemo(() => transactions.filter((t) => t.type === "income").reduce((s, t) => s + t.amount, 0), [transactions]);
