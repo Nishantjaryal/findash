@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useFinance } from "@/context/FinanceContext";
-import { monthlyData } from "@/data/mockData";
 
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
