@@ -1,14 +1,13 @@
 import { useFinance } from "@/context/FinanceContext";
-import { Category, TransactionType } from "@/data/mockData";
 import { Search, ArrowUpDown, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import AddTransactionDialog from "./AddTransactionDialog";
 
-const categories: Category[] = ["Salary", "Freelance", "Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Education", "Investment"];
+const categories: string[] = ["Salary", "Freelance", "Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Education", "Investment"];
 
 const TransactionList = () => {
   const { filteredTransactions, filters, setFilters, role, deleteTransaction } = useFinance();
-  const [showAdd, setShowAdd] = useState(false);
+  const [showAdd, setShowAdd] = useState(JSON.parse(localStorage.getItem("transactions_data") || "[]").length === 0);
 
   return (
     <div className="rounded-xl bg-card border border-border">
@@ -38,7 +37,7 @@ const TransactionList = () => {
           </div>
           <select
             value={filters.type}
-            onChange={(e) => setFilters((f) => ({ ...f, type: e.target.value as TransactionType | "all" }))}
+            onChange={(e) => setFilters((f) => ({ ...f, type: e.target.value as "all" | "income" | "expense" }))}
             className="px-2.5 py-1.5 text-xs rounded-lg border border-border bg-background focus:outline-none"
           >
             <option value="all">All Types</option>
@@ -47,7 +46,7 @@ const TransactionList = () => {
           </select>
           <select
             value={filters.category}
-            onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value as Category | "all" }))}
+            onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value as "all" | string }))}
             className="px-2.5 py-1.5 text-xs rounded-lg border border-border bg-background focus:outline-none"
           >
             <option value="all">All Categories</option>

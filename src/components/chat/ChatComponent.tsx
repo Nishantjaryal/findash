@@ -23,8 +23,9 @@ const ChatComponent = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: msg,
-        model_name: "gemini-3-flash-preview",
+        message: {message: msg,
+          data: localStorage.getItem("transactions_data") || "[]"},
+        model_name: "gpt-oss:20b",
       }),
     });
 
