@@ -49,7 +49,7 @@ const BalanceChart = () => {
 
   return (
 
-  <div className="rounded-xl bg-card p-5 border border-border">
+  <div className="rounded-xl bg-card p-5 border border-border w-full">
     <h3 className="text-sm font-semibold mb-4">Balance Trend</h3>
     <div className="h-64">
       <ResponsiveContainer width="100%" height="100%">

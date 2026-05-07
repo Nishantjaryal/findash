@@ -126,3 +126,16 @@
   background: #dddddd;
   border-radius: 5px;
 }
+
+.Mytransition {
+  background: #020024;
+  background-size: 800% 800%;
+background: linear-gradient(45deg, rgb(177, 173, 247) 0%, rgb(202, 202, 251) 35%, rgb(203, 224, 247) 58%, rgb(189, 222, 234) 84%, rgb(210, 229, 233) 100%);
+transition: all 5s ease;
+animation: myAnimation 5s ease-in-out infinite;
+}
+
+@keyframes myAnimation {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}

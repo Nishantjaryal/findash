@@ -5,7 +5,7 @@ const RoleToggle = () => {
   const { role, setRole } = useFinance();
 
   return (
-    <div className="flex items-center gap-1.5 p-1 rounded-lg bg-secondary">
+    <div className="flex max-sm:hidden items-center gap-1.5 p-1 rounded-lg bg-secondary">
       {(["admin", "viewer"] as Role[]).map((r) => (
         <button
           key={r}

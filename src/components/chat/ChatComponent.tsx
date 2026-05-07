@@ -68,7 +68,7 @@ const ChatComponent = () => {
   };
 
   return (
-    <div className="flex flex-col relative max-w-[300px] overflow-hidden rounded-xl border bg-card/90 p-2 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.5)]">
+    <div className="flex flex-col relative w-full max-w-[300px] max-lg:max-w-full max-lg:min-h-[500px] overflow-hidden rounded-xl border bg-card/90 p-2 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.5)]">
 
 
       <div className=" flex flex-col gap-2">
@@ -86,7 +86,7 @@ const ChatComponent = () => {
 
       
 
-          <div className="flex max-h-[300px] flex-col gap-4 overflow-y-auto pr-2">
+          <div className="flex max-h-[300px] flex-col gap-4 overflow-y-auto pr-2 pb-12">
             {messages.map((message, index) => {
               const isUser = message.role === "user";
               return (
@@ -118,8 +118,8 @@ const ChatComponent = () => {
             )}
         </div>
 
-        <form onSubmit={sendMessage} className="rounded-lg border absolute bottom-0 left-0 right-0 bg-background/80 p-1">
-          <div className="flex flex-col gap-1">
+        <form onSubmit={sendMessage} className="rounded-lg border absolute bottom-0 left-0 right-0 bg-background/80 p-2">
+          <div className="flex flex-col gap-2">
             <textarea
               value={input}
               onChange={(event) => setInput(event.target.value)}
@@ -137,7 +137,7 @@ const ChatComponent = () => {
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-60"
               >
                 Send
                 <Send className="h-4 w-4" />

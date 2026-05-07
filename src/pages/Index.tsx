@@ -24,13 +24,13 @@ const Index = () => (
           <RoleToggle />
         </div>
 
-        <div className="flex w-full gap-4">
+        <div className="flex w-full max-lg:flex-col gap-4">
           <div className="w-full">
             {/* Summary */}
             <SummaryCards />
 
             {/* Charts row */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div className="flex flex-col max-sm:flex-col-reverse lg:flex-row gap-4 mt-4">
               <BalanceChart />
               <SpendingBreakdown />
             </div>

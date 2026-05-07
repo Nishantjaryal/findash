@@ -30,16 +30,16 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
   const check = JSON.parse(localStorage.getItem("transactions_data") || "[]").length === 0;
 
   const inputClass = "w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-1 focus:ring-ring";
-
+  
   return (
-    <div className={`fixed inset-0 z-50 flex gap-8 items-center justify-center ${!check?"bg-foreground/20":"bg-white"} backdrop-blur-sm`} onClick={check ?   undefined:onClose}>
+    <div className={`fixed inset-0 z-50 flex max-lg:flex-col gap-8 items-center justify-center ${!check?"bg-foreground/20":"bg-white"} backdrop-blur-sm`} onClick={check ?   undefined:onClose}>
       <div className={`${check?"flex":"hidden"} flex-col items-center gap-4  `}>
         <img src="/2.svg" alt="Add Transaction" width={200} height={200} className="mb-4" />
       </div>
-      <div className="bg-card rounded-xl border border-border p-6 w-full max-w-md shadow-lg" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-card rounded-xl border border-border p-6 w-[90%] max-w-md shadow-lg" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-semibold">{!check ? "Add Transaction" : "Start Adding Transactions"}</h3>
-          <button onClick={onClose} className="text-muted-foreground hover:text-foreground"><X className="h-4 w-4" /></button>
+          <button onClick={onClose} className={`${!check ? "":"hidden"} text-muted-foreground hover:text-foreground`}><X className="h-4 w-4" /></button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-3">
           <input placeholder="Description" value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className={inputClass} required />
