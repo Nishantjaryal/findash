@@ -9,12 +9,12 @@ import ChatComponent from "@/components/chat/ChatComponent";
 
 const Index = () => (
   <FinanceProvider>
-    <div className="min-h-screen bg-background">
+    <div id="topelement" className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-xl font-bold tracking-tight">
+            <h1  className="text-xl font-bold tracking-tight">
               Finance Dashboard
             </h1>
             <p className="text-sm text-muted-foreground mt-0.5">
@@ -44,7 +44,7 @@ const Index = () => (
         </div>
 
         {/* Transactions */}
-        <div className="mt-4">
+        <div className="mt-4 mb-8">
           <TransactionList />
         </div>
       </div>

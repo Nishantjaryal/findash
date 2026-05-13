@@ -25,6 +25,7 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
       date: form.date,
     });
     onClose();
+    window.location.replace("#topelement");
   };
 
   const check = JSON.parse(localStorage.getItem("transactions_data") || "[]").length === 0;
@@ -32,7 +33,7 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
   const inputClass = "w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-1 focus:ring-ring";
   
   return (
-    <div className={`fixed inset-0 z-50 flex flex-row max-lg:flex-col items-center justify-center gap-8 ${!check?"bg-foreground/20":"bg-gradient-to-r from-blue-500/50 to-pink-200/50 "} backdrop-blur-sm `} onClick={check ?   undefined:onClose}>
+    <div className={`fixed inset-0 z-50 flex flex-row max-lg:flex-col items-center justify-center gap-4 ${!check?"bg-foreground/20":"bg-gradient-to-r from-blue-500/50 to-pink-200/50 "} backdrop-blur-sm `} onClick={check ?   undefined:onClose}>
       
       <div className={`${check?"flex min-h-[350px] ":"hidden"} flex-col items-start justify-between gap-5 bg-card/95 rounded-2xl border border-border/70 p-7 w-[90%] max-w-md shadow-[0_20px_60px_-30px_rgba(16,24,40,0.45)]`}>
       
