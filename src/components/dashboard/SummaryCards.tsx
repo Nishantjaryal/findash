@@ -2,7 +2,7 @@ import { useFinance } from "@/context/FinanceContext";
 import { DollarSign, TrendingUp, TrendingDown, Wallet } from "lucide-react";
 
 const fmt = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+  n.toLocaleString("en-US", { style: "currency", currency: "INR" });
 
 const SummaryCards = () => {
   const { balance, totalIncome, totalExpenses } = useFinance();
