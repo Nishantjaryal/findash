@@ -1,6 +1,7 @@
 import { useFinance } from "@/context/FinanceContext";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { Category } from "@/data/mockData";
 
 const categories: string[] = ["Salary", "Freelance", "Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Education", "Investment"];
 
@@ -21,7 +22,7 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
       description: form.description,
       amount: parseFloat(form.amount),
       type: form.type,
-      category: form.category,
+      category: form.category as Category,
       date: form.date,
     });
     onClose();
@@ -33,9 +34,9 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
   const inputClass = "w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-1 focus:ring-ring";
   
   return (
-    <div className={`fixed inset-0 z-50 flex flex-row max-lg:flex-col items-center justify-center gap-4 ${!check?"bg-foreground/20":"bg-gradient-to-r from-blue-500/50 to-pink-200/50 "} backdrop-blur-sm `} onClick={check ?   undefined:onClose}>
+    <div className={`fixed inset-0 z-50 flex flex-row max-lg:flex-col items-center justify-center gap-4 ${!check?"bg-foreground/20":"bg-blue-50 "} backdrop-blur-sm `} onClick={check ?   undefined:onClose}>
       
-      <div className={`${check?"flex min-h-[350px] ":"hidden"} flex-col items-start justify-between gap-5 bg-card/95 rounded-2xl border border-border/70 p-7 w-[90%] max-w-md shadow-[0_20px_60px_-30px_rgba(16,24,40,0.45)]`}>
+      <div className={`${check?"flex min-h-[350px] ":"hidden"} flex-col items-start justify-between gap-5 bg-transparent rounded-2xl  p-7 w-[90%] max-w-md `}>
       
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold leading-tight text-foreground">FinDash</h2>
@@ -43,7 +44,7 @@ const AddTransactionDialog = ({ onClose }: { onClose: () => void }) => {
             Add one purchase or income to unlock your personal Ai Powred dashboard insights.
           </p>
         </div>
-        <div className="w-full rounded-xl border border-dashed border-border/70 bg-background p-4">
+        <div className="w-full rounded-xl border border-dashed border-border/70 bg-blue-100 p-4">
           <div className="flex items-center gap-4">
             <img src="/2.svg" alt="Add Transaction" className="max-h-[120px] w-auto" />
             <div className="space-y-2">

@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
-import { transactions as initialTransactions, Transaction, TransactionType, Category } from "@/data/mockData";
-import { set } from "date-fns";
+import { Category, Transaction, TransactionType } from "@/data/mockData";
 
 export type Role = "admin" | "viewer";
 

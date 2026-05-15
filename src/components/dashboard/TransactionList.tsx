@@ -1,13 +1,24 @@
+import { categories, Category } from "@/data/mockData";
 import { useFinance } from "@/context/FinanceContext";
 import { Search, ArrowUpDown, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import AddTransactionDialog from "./AddTransactionDialog";
 
-const categories: string[] = ["Salary", "Freelance", "Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Education", "Investment"];
-
 const TransactionList = () => {
   const { filteredTransactions, filters, setFilters, role, deleteTransaction } = useFinance();
   const [showAdd, setShowAdd] = useState(JSON.parse(localStorage.getItem("transactions_data") || "[]").length === 0);
+
+  const DeleteHandler = (id: string) => {
+    // if (confirm("Are you sure you want to delete this transaction?")) {
+
+    // without confirmation 
+      deleteTransaction(id);
+      const check = JSON.parse(localStorage.getItem("transactions_data") || "[]").length === 0;
+      if(check){
+        window.location.replace("/");
+      }
+
+  };
 
   return (
     <div className="rounded-xl bg-card border border-border">
@@ -46,7 +57,7 @@ const TransactionList = () => {
           </select>
           <select
             value={filters.category}
-            onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value as "all" | string }))}
+            onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value as "all" | Category }))}
             className="px-2.5 py-1.5 text-xs rounded-lg border border-border bg-background focus:outline-none"
           >
             <option value="all">All Categories</option>
@@ -86,11 +97,11 @@ const TransactionList = () => {
                     <span className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground">{t.category}</span>
                   </td>
                   <td className={`px-5 py-3 text-right font-semibold ${t.type === "income" ? "text-success" : "text-destructive"}`}>
-                    {t.type === "income" ? "+" : "-"}${t.amount.toFixed(2)}
+                    {t.type === "income" ? "+" : "-"}{t.amount.toFixed(2)} 
                   </td>
                   {role === "admin" && (
                     <td className="px-5 py-3">
-                      <button onClick={() => deleteTransaction(t.id)} className="text-muted-foreground hover:text-destructive transition-colors">
+                      <button onClick={() => DeleteHandler(t.id)} className="text-muted-foreground hover:text-destructive transition-colors">
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
                     </td>
